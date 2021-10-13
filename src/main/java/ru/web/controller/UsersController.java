@@ -1,5 +1,5 @@
 
-package ru.web.controllers;
+package ru.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

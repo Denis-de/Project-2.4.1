@@ -1,4 +1,4 @@
-package ru.web.controllers;
+package ru.web.controller;
 
 
 import org.springframework.stereotype.Controller;

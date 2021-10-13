@@ -1,9 +1,8 @@
 package ru.web.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import ru.web.models.User;
+import ru.web.model.User;
 
 
 import javax.persistence.EntityManager;
@@ -15,7 +14,7 @@ import java.util.List;
 public class UserRepositiryImpl implements UserRepositiry {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public UserRepositiryImpl(EntityManager entityManager) {

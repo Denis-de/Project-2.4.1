@@ -1,9 +1,8 @@
 package ru.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import ru.web.models.User;
+import ru.web.model.User;
 import ru.web.repository.UserRepositiry;
 
 import javax.transaction.Transactional;
