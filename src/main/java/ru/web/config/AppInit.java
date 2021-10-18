@@ -1,10 +1,11 @@
 package ru.web.config;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -21,7 +22,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     // Метод, указывающий на класс конфигурации
     @Override
     protected Class<?>[] getRootConfigClasses() {
-       return null;
+        return null;
        // return new Class[0];
       //  return new Class[]{HibernateConfig.class};
     }
@@ -31,7 +32,8 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
-                WebConfig.class
+                WebConfig.class,
+              //  HibernateConfig.class
         };
     }
 
@@ -51,11 +53,11 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
-        // DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setDriverClass(environment.getRequiredProperty("db.driver"));
-        dataSource.setJdbcUrl(environment.getRequiredProperty("db.url"));
-        dataSource.setUser(environment.getRequiredProperty("db.username"));
+         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+       // ComboPooledDataSource dataSource = new ComboPooledDataSource();
+        dataSource.setDriverClassName(environment.getRequiredProperty("db.driver"));
+        dataSource.setUrl(environment.getRequiredProperty("db.url"));
+        dataSource.setUsername(environment.getRequiredProperty("db.username"));
         dataSource.setPassword(environment.getRequiredProperty("db.password"));
         return dataSource;
     }
@@ -85,6 +87,6 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         Properties properties = new Properties();
         properties.getProperty("hibernate.properties");
         return properties;
-    }
-*/
+    }*/
+
 }

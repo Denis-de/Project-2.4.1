@@ -7,10 +7,12 @@ import ru.web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 
 @Repository
+//@Transactional
 public class UserRepositiryImpl implements UserRepositiry {
 
     @PersistenceContext
@@ -23,7 +25,7 @@ public class UserRepositiryImpl implements UserRepositiry {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT e FROM User e", User.class).getResultList();
+        return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
 
     @Override

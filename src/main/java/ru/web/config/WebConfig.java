@@ -13,9 +13,10 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-//@EnableTransactionManagement
+//@EnableSpringDataWebSupport
+@EnableTransactionManagement
 @EnableWebMvc
-@ComponentScan("ru.web")
+@ComponentScan(basePackages = "ru.web")
 public class WebConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 
