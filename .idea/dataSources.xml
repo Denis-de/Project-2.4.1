@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL" uuid="8c5f1f50-d7ab-4472-8a4d-23aeb06642d3">
+    <data-source source="LOCAL" name="MySQL@localhost" uuid="47de79aa-366f-41c0-9a77-7bf9a76b0dc2">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <vm-env>
+        <property name="Path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd\;C:\Program Files\apache-maven-3.8.1\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\" />
+      </vm-env>
       <driver-properties>
         <property name="serverTimezone" value="Europe/Moscow" />
       </driver-properties>

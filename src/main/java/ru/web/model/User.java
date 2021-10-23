@@ -1,12 +1,11 @@
 package ru.web.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+
 
 @Entity
 @Table(name = "userstable")
-public class User implements Serializable {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +23,8 @@ public class User implements Serializable {
 
     }
 
-    public User(String name, String lastName, int age) {
+    public User(Long id, String name, String lastName, int age) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.age = age;

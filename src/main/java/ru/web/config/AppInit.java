@@ -1,20 +1,10 @@
 package ru.web.config;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
-import java.util.Properties;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -23,8 +13,6 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
-       // return new Class[0];
-      //  return new Class[]{HibernateConfig.class};
     }
 
 
@@ -33,7 +21,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
                 WebConfig.class,
-              //  HibernateConfig.class
+                //  HibernateConfig.class
         };
     }
 
@@ -44,49 +32,10 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new String[]{"/"};
     }
 
-   /* private Environment environment;
-
-    @Autowired
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter("UTF-8", true, true))
+                .addMappingForUrlPatterns(null, false, "/*");
     }
-
-    @Bean
-    public DataSource dataSource() throws PropertyVetoException {
-         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-       // ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("db.driver"));
-        dataSource.setUrl(environment.getRequiredProperty("db.url"));
-        dataSource.setUsername(environment.getRequiredProperty("db.username"));
-        dataSource.setPassword(environment.getRequiredProperty("db.password"));
-        return dataSource;
-    }
-
-    @Bean
-    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() throws PropertyVetoException {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-        em.setPackagesToScan(environment.getRequiredProperty("db.entity.package"));
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setJpaProperties(additionalProperties());
-        return em;
-    }
-
-    @Bean
-    public PlatformTransactionManager getTransactionManager () throws PropertyVetoException {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(getEntityManagerFactory().getObject());
-        return transactionManager;
-    }
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    public Properties additionalProperties() {
-        Properties properties = new Properties();
-        properties.getProperty("hibernate.properties");
-        return properties;
-    }*/
-
 }

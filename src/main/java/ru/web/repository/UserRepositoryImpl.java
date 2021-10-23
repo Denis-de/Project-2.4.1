@@ -1,27 +1,18 @@
 package ru.web.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.web.model.User;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 
-
 @Repository
-//@Transactional
-public class UserRepositiryImpl implements UserRepositiry {
+
+public class UserRepositoryImpl implements UserRepository {
 
     @PersistenceContext
-    private final EntityManager entityManager;
-
-    @Autowired
-    public UserRepositiryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    private EntityManager entityManager;
 
     @Override
     public List<User> getAllUsers() {
@@ -46,9 +37,9 @@ public class UserRepositiryImpl implements UserRepositiry {
     }
 
     @Override
-    public User delete(Long id) throws NullPointerException {
+    public User deleteUser(Long id) throws NullPointerException {
         User user = readUser(id);
-        if(null == user) {
+        if (null == user) {
             throw new NullPointerException("User not found");
         }
         entityManager.remove(user);
