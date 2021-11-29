@@ -13,18 +13,28 @@
         <table>
             <thead>
             <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>lastName</th>
-                <th>age</th>
+                <th>Id</th>
+                <th>login</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Password</th>
+                <th>Roles</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.age}"></td>
+                <td th:text="${user.password}"></td>
+               <!-- <td th:text="${user.roles}"></td>-->
+                <td>
+                <div th:each="role : ${user.getRoles}">
+                    <span th:if="(${role.getName()} == 'ROLE_ADMIN')" th:text="Admin"></span>
+                    <span th:if="(${role.getName()} == 'ROLE_USER')" th:text="User"></span>
                 <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
                 <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
             </tr>

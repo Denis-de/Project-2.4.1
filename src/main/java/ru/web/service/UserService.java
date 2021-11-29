@@ -1,12 +1,14 @@
 package ru.web.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ru.web.model.User;
 
 import java.util.List;
 
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     List<User> getAllUsers();
 
     void createUser(User user);
@@ -16,4 +18,5 @@ public interface UserService {
     User readUser(Long id);
 
     User deleteUser(Long id);
+
 }

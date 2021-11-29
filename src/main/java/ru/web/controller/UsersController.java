@@ -1,8 +1,6 @@
 
 package ru.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,11 +9,11 @@ import ru.web.model.User;
 import ru.web.service.UserService;
 import ru.web.service.UserServiceImpl;
 
-import java.util.ArrayList;
+import java.awt.print.Printable;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
-
 public class UsersController {
 
     private UserService userService;
@@ -26,10 +24,21 @@ public class UsersController {
     }
 
     @GetMapping("/users")
+    public String getUser(Model modelMap) {
+        modelMap.addAttribute("users", userService.getAllUsers());
+        return "user-page";
+    }
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") Long id, ModelMap modelMap) {
+        modelMap.addAttribute("users", userService.readUser(id));
+        return "user-page";
+    }
+  /*  @GetMapping("/users")
     public String allUsers(Model model) {
         List<User> user = userService.getAllUsers();
         model.addAttribute("users", user);
-        return "user-list";
+        return "users";
     }
 
     @GetMapping("/user-create")
@@ -60,6 +69,6 @@ public class UsersController {
     public String updateUser(User user) {
         userService.updateUser(user);
         return "redirect:/users";
-    }
+    }*/
 }
 

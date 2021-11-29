@@ -1,8 +1,6 @@
 package ru.web.repository;
 
-import org.springframework.stereotype.Repository;
 import ru.web.model.User;
-
 import java.util.List;
 
 
@@ -16,4 +14,7 @@ public interface UserRepository {
     User readUser(Long id);
 
     User deleteUser(Long id);
+
+    User getUserByName(String name);
+
 }
