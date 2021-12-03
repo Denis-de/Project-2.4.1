@@ -56,4 +56,6 @@ public class UserRepositoryImpl implements UserRepository {
        User user = (User)query.setParameter("username", username).getSingleResult();
        return user;
     }
+
+
 }

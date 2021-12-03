@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.web.model.User;
+import ru.web.service.RoleService;
 import ru.web.service.UserService;
 import ru.web.service.UserServiceImpl;
 
@@ -17,14 +18,17 @@ import java.util.List;
 public class UsersController {
 
     private UserService userService;
+    private RoleService roleService;
 
 
-    public UsersController(UserServiceImpl userService) {
+    public UsersController(UserServiceImpl userService, RoleService roleService) {
+        this.roleService = roleService;
         this.userService = userService;
     }
 
     @GetMapping("/users")
     public String getUser(Model modelMap) {
+      //  modelMap.addAttribute("roles", roleService.getAllRoles());
         modelMap.addAttribute("users", userService.getAllUsers());
         return "user-page";
     }

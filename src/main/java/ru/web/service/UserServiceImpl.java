@@ -12,6 +12,7 @@ import ru.web.model.User;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,10 +64,10 @@ public class UserServiceImpl implements UserService {
         }
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.getAuthorities());
+               mapRoleToAuthorities(user.getRoles()));
     }
 
-    /*private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Collection<Role> roles) {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getAuthority())).collect(Collectors.toList());
-    }*/
+    private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Set<Role> roles) {
+        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList());
+    }
 }

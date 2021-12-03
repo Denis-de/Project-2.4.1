@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.web.model.Role;
 import ru.web.model.User;
 //import ru.web.service.RoleService;
+import ru.web.service.RoleService;
 import ru.web.service.UserService;
 
 import java.util.HashSet;
@@ -17,18 +18,20 @@ import java.util.Set;
 @Controller
 public class AdminController {
     private UserService userService;
-  //  private RoleService roleService;
+    private RoleService roleService;
 
     @Autowired
-    public  AdminController(UserService userService) {//}, RoleService roleService) {
+    public  AdminController(UserService userService , RoleService roleService) {
         this.userService = userService;
-     //   this.roleService = roleService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/admin")
     public String allUsers(Model model) {
         List<User> user = userService.getAllUsers();
+       // List<Role> role = roleService.getAllRoles();
         model.addAttribute("users", user);
+       // model.addAttribute("roles", role);
         return "user-list";
     }
 

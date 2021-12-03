@@ -15,10 +15,10 @@ public class RoleRepositoryImpl implements RoleRepository{
     private EntityManager entityManager;
 
 
-    @Override
+   /* @Override
     public List<Role> getAllRoles() {
         return entityManager.createQuery("SELECT r FROM Role r", Role.class).getResultList();
-    }
+    }*/
 
     @Override
     public Role getRoleByName(String role) {

@@ -18,11 +18,11 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-    @Override
+  /*  @Override
     public List<Role> getAllRoles() {
         return roleRepository.getAllRoles();
     }
-
+*/
     @Override
     public Role getRoleByName(String role) {
         return roleRepository.getRoleByName(role);

@@ -50,42 +50,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       //  http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll() // доступность всем
-                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/users").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-                //.antMatchers("/login").anonymous()
-             //   .antMatchers("/").permitAll() // доступность всем
+                .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
+                .antMatchers("/users/**").access("hasAnyAuthority('USER', 'ADMIN')")
+                .antMatchers("/**").permitAll() // доступность всем
                 .and().formLogin()
                 .successHandler(successUserHandler);
-                //.defaultSuccessUrl("/")
-               // .permitAll()
-               // .and()
-               // .logout()
-                //.permitAll();
-               // .logoutSuccessUrl("/");
-
-  /* http.formLogin()
-                // указываем страницу с формой логина
-                .loginPage("/login")
-                //указываем логику обработки при логине
-                .successHandler(successHandler)
-                // указываем action с формы логина
-                .loginProcessingUrl("/login")
-                // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                // даем доступ к форме логина всем
-                .permitAll();*/
+               // .and().csrf().disable();
 
 
-      /*  http
+        http
                 .logout()
                 // разрешаем делать логаут всем
                 .permitAll()
                 // указываем URL логаута
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout");*/
+                .logoutSuccessUrl("/login?logout");
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                // .and().csrf().disable();
 
@@ -94,13 +74,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-       // return NoOpPasswordEncoder.getInstance();
+     //   return NoOpPasswordEncoder.getInstance();
     }
-   /* @Bean
+
+    @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         authenticationProvider.setUserDetailsService(userService);
         return authenticationProvider;
-    }*/
+    }
 }
