@@ -52,22 +52,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
                 .antMatchers("/users/**").access("hasAnyAuthority('USER', 'ADMIN')")
-                .antMatchers("/**").permitAll() // доступность всем
+                .antMatchers("/login/**").permitAll() // доступность всем
                 .and().formLogin()
-                .successHandler(successUserHandler);
-               // .and().csrf().disable();
-
-
-        http
+                .successHandler(successUserHandler)
+                .and()
                 .logout()
                 // разрешаем делать логаут всем
                 .permitAll()
                 // указываем URL логаута
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/login")
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
-               // .and().csrf().disable();
+                .and().csrf().disable();
 
     }
 

@@ -25,7 +25,7 @@
                 <td th:text="${user.id}"></td>
               <!--  <td th:text="${user.username}">Login</td>-->
                 <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}">Last Name</td>
+                <td th:text="${user.lastName}"></td>
                 <td th:text="${user.age}"></td>
              <!--   <td th:text="${user.password}">Password</td>-->
                 <td th:text="${user.roles}"></td>
@@ -33,6 +33,9 @@
             </tr>
             </tbody>
         </table>
+        <form th:action = "@{/logout}" method = "post">
+            <input type = "submit" value = "Logout" >
+        </form>
 </div>
 </div>
 </body>

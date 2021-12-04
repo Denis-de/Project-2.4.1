@@ -30,12 +30,10 @@ public class DBInit {
         Set<Role> setUser = new HashSet<>();
         Role roleAdmin = new Role("ADMIN");
         Role roleUser = new Role ("USER");
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         setAdmin.add(roleAdmin);
-       // setUser.add(roleUser);
-        User admin = new User( "ADMIN", "ADMIN", "ADMIN", 21,  passwordEncoder.encode("aaa"),setAdmin);
+        User admin = new User( "ADMIN", "ADMIN", "ADMIN", 21,  "aaa",setAdmin);
         setUser.add(roleUser);
-        User user = new User( "USER", "USER", "USER", 22,  passwordEncoder.encode("uuu"), setUser );
+        User user = new User( "USER", "USER", "USER", 22, "uuu", setUser );
         userService.createUser(admin);
         userService.createUser(user);
     }

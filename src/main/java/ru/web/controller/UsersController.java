@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.web.model.User;
-import ru.web.service.RoleService;
+//import ru.web.service.RoleService;
 import ru.web.service.UserService;
 import ru.web.service.UserServiceImpl;
 
@@ -18,11 +18,11 @@ import java.util.List;
 public class UsersController {
 
     private UserService userService;
-    private RoleService roleService;
+  //  private RoleService roleService;
 
 
-    public UsersController(UserServiceImpl userService, RoleService roleService) {
-        this.roleService = roleService;
+    public UsersController(UserServiceImpl userService){//}, RoleService roleService) {
+     //   this.roleService = roleService;
         this.userService = userService;
     }
 

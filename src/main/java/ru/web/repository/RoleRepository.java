@@ -1,3 +1,4 @@
+/*
 package ru.web.repository;
 
 import ru.web.model.Role;
@@ -13,3 +14,4 @@ public interface RoleRepository {
 
     Role getDefaultRole();
 }
+*/
