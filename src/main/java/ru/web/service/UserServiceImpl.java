@@ -73,5 +73,4 @@ public class UserServiceImpl implements UserService {
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Set<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList());
     }
-
 }
