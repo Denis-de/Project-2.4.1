@@ -1,4 +1,3 @@
-/*
 
 package ru.web.model;
 
@@ -69,8 +68,8 @@ public class Role implements GrantedAuthority {
         return Objects.hash(id, role);
     }
 
-    @Override
+    @Overrid
     public String toString() {
         return this.role;
     }
-}*/
+}
