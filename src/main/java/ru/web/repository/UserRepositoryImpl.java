@@ -1,5 +1,6 @@
 package ru.web.repository;
 
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 import ru.web.model.Role;
 import ru.web.model.User;
@@ -17,9 +18,10 @@ public class UserRepositoryImpl implements UserRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+        return entityManager.createQuery("SELECT u FROM User u JOIN FETCH u.roles", User.class).getResultList();
     }
 
     @Override
@@ -56,6 +58,4 @@ public class UserRepositoryImpl implements UserRepository {
        User user = (User)query.setParameter("username", username).getSingleResult();
        return user;
     }
-
-
 }

@@ -1,4 +1,3 @@
-/*
 package ru.web.repository;
 
 import org.springframework.stereotype.Repository;
@@ -16,11 +15,10 @@ public class RoleRepositoryImpl implements RoleRepository{
     private EntityManager entityManager;
 
 
-   */
-/* @Override
+ @Override
     public List<Role> getAllRoles() {
         return entityManager.createQuery("SELECT r FROM Role r", Role.class).getResultList();
-    }*//*
+    }
 
 
     @Override
@@ -40,4 +38,3 @@ public class RoleRepositoryImpl implements RoleRepository{
         return getRoleByName("USER_ROLE");
     }
 }
-*/

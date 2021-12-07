@@ -14,22 +14,18 @@
             <thead>
             <tr>
                 <th>Id</th>
-              <!--  <th>login</th>-->
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
-              <!--  <th>Password</th>-->
                 <th>Roles</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-              <!--  <td th:text="${user.username}"></td>-->
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.age}"></td>
-               <!-- <td th:text="${user.password}"></td>-->
                <td th:text="${user.roles}"></td>
                 <td>
                 <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>

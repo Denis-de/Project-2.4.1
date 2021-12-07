@@ -18,24 +18,23 @@ import java.util.List;
 public class UsersController {
 
     private UserService userService;
-  //  private RoleService roleService;
 
 
-    public UsersController(UserServiceImpl userService){//}, RoleService roleService) {
-     //   this.roleService = roleService;
+
+    public UsersController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
     @GetMapping("/users")
-    public String getUser(Model modelMap) {
-      //  modelMap.addAttribute("roles", roleService.getAllRoles());
-        modelMap.addAttribute("users", userService.getAllUsers());
+    public String getUser(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
         return "user-page";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, ModelMap modelMap) {
-        modelMap.addAttribute("users", userService.readUser(id));
+    @GetMapping("/users/{id}")
+    public String show(@PathVariable(value = "id") Long id, Model model) {
+        User user = userService.readUser(id);
+        model.addAttribute("users", user);
         return "user-page";
     }
   /*  @GetMapping("/users")
