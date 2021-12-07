@@ -17,26 +17,26 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
-               <th>Roles</th>
+                <th>Roles</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-              <!--  <td th:text="${user.username}">Login</td>-->
+                <!--  <td th:text="${user.username}">Login</td>-->
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.age}"></td>
-             <!--   <td th:text="${user.password}">Password</td>-->
+                <!--   <td th:text="${user.password}">Password</td>-->
                 <td th:text="${user.roles}"></td>
                 <td>
             </tr>
             </tbody>
         </table>
-        <form th:action = "@{/logout}" method = "post">
-            <input type = "submit" value = "Logout" >
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout">
         </form>
-</div>
+    </div>
 </div>
 </body>
 </html>

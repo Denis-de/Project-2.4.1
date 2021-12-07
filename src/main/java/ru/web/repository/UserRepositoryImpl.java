@@ -1,16 +1,12 @@
 package ru.web.repository;
 
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
-import ru.web.model.Role;
 import ru.web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -54,8 +50,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getUserByName(String username) {
-       TypedQuery query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
-       User user = (User)query.setParameter("username", username).getSingleResult();
-       return user;
+        TypedQuery query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+        User user = (User) query.setParameter("username", username).getSingleResult();
+        return user;
     }
 }

@@ -1,7 +1,5 @@
 package ru.web.init;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.web.model.Role;
@@ -29,11 +27,11 @@ public class DBInit {
         Set<Role> setAdmin = new HashSet<>();
         Set<Role> setUser = new HashSet<>();
         Role roleAdmin = new Role("ADMIN");
-        Role roleUser = new Role ("USER");
+        Role roleUser = new Role("USER");
         setAdmin.add(roleAdmin);
-        User admin = new User( "ADMIN", "ADMIN", "ADMIN", 21,  "aaa",setAdmin);
+        User admin = new User("ADMIN", "ADMIN", "ADMIN", 21, "aaa", setAdmin);
         setUser.add(roleUser);
-        User user = new User( "USER", "USER", "USER", 22, "uuu", setUser );
+        User user = new User("USER", "USER", "USER", 22, "uuu", setUser);
         userService.createUser(admin);
         userService.createUser(user);
     }

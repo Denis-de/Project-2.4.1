@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.createUser(user);
     }
 
@@ -62,12 +62,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.getUserByName(username);
-        if(user == null) {
+        if (user == null) {
             throw new UsernameNotFoundException("Could not find user");
         }
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-               mapRoleToAuthorities(user.getRoles()));
+                mapRoleToAuthorities(user.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Set<Role> roles) {
