@@ -15,16 +15,16 @@ import java.util.Properties;
 
 
 @Configuration
-@EnableTransactionManagement(proxyTargetClass = true)
+//@EnableTransactionManagement(proxyTargetClass = true)
 @PropertySource("classpath:db.properties")
 @ComponentScan("ru.web")
 
-public class HibernateConfig {
+public class WebAppConfig {
 
     private final Environment environment;
 
     @Autowired
-    public HibernateConfig(Environment environment) {
+    public WebAppConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -40,7 +40,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setDataSource(dataSource());
@@ -52,7 +52,7 @@ public class HibernateConfig {
     @Bean
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        transactionManager.setEntityManagerFactory(entityManager().getObject());
         return transactionManager;
     }
 
@@ -63,5 +63,3 @@ public class HibernateConfig {
         return properties;
     }
 }
-
-

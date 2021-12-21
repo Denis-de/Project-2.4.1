@@ -9,12 +9,12 @@ import ru.web.service.UserService;
 import ru.web.service.UserServiceImpl;
 
 @Controller
-public class UsersController {
+public class UserController {
 
     private UserService userService;
 
 
-    public UsersController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
@@ -27,7 +27,7 @@ public class UsersController {
     @GetMapping("/users/{id}")
     public String show(@PathVariable(value = "id") Long id, Model model) {
         User user = userService.readUser(id);
-        model.addAttribute("users", user);
+            model.addAttribute("users", user);
         return "user-page";
     }
 }

@@ -23,13 +23,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void createUser(User user) {
         entityManager.persist(user);
-        entityManager.flush();
     }
 
     @Override
     public void updateUser(User user) {
         entityManager.merge(user);
-        entityManager.flush();
     }
 
     @Override
@@ -44,7 +42,6 @@ public class UserRepositoryImpl implements UserRepository {
             throw new NullPointerException("User not found");
         }
         entityManager.remove(user);
-        entityManager.flush();
         return user;
     }
 

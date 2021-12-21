@@ -1,10 +1,14 @@
 package ru.web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.web.model.Role;
@@ -17,40 +21,47 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
     @Override
+    @Transactional
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 
     @Override
+    @Transactional
     public void createUser(User user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.createUser(user);
     }
 
     @Override
+    @Transactional
     public void updateUser(User user) {
         userRepository.updateUser(user);
     }
 
 
     @Override
+    @Transactional
     public User readUser(Long id) {
         return userRepository.readUser(id);
     }
 
 
     @Override
+    @Transactional
     public User deleteUser(Long id) {
         return userRepository.deleteUser(id);
     }
@@ -60,6 +71,7 @@ public class UserServiceImpl implements UserService {
     //  приведен к классу UserDetails.
     // Для создания UserDetails используется интерфейс UserDetailsService, с единственным методом:
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.getUserByName(username);
         if (user == null) {

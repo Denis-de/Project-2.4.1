@@ -12,8 +12,6 @@ import java.util.Set;
 
 @Component
 public class DBInit {
-
-
     private final UserService userService;
 
     public DBInit(UserService userService) {
